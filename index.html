@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Our Friendship Memories</title>
+    <style>
+        /* Reset and Background */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #FFF9E6; /* Light Yellow */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Title & Message */
+        h1 {
+            font-size: 24px;
+            color: #e6a000;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Slideshow Box */
+        .media-box {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #f0e6d3;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .media-box img, .media-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* Hidden by default */
+        }
+
+        .media-box img.active, .media-box video.active {
+            display: block;
+        }
+
+        /* Timeline Dots */
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .dot.active {
+            background-color: #FFC107;
+            transform: scale(1.2);
+        }
+
+        /* Audio Player (Hidden) */
+        audio {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            border-radius: 20px;
+        }
+
+        /* Button */
+        .btn-message {
+            background-color: #FFB74D;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 183, 77, 0.4);
+            margin-top: 15px;
+            margin-bottom: 10px;
+            transition: 0.2s;
+        }
+        .btn-message:active {
+            transform: scale(0.95);
+            background-color: #FFA726;
+        }
+        .btn-message.hidden {
+            display: none;
+        }
+
+        /* Secret Message Area */
+        #secretMessage {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+            border-left: 6px solid #FFB74D;
+            text-align: left;
+            color: #5a4a30;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        #secretMessage.show {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>💛 Our Friendship Story 💛</h1>
+
+        <div class="media-box" id="mediaBox">
+            <!-- Images 1 to 24 -->
+            <img src="photo1.jpg" class="active" alt="Memory 1">
+            <img src="photo2.jpg" alt="Memory 2">
+            <img src="photo3.jpg" alt="Memory 3">
+ <img src="photo4.jpg" alt="Memory 4">
+ <img src="photo5.jpg" alt="Memory 5">
+ <img src="photo6.jpg" alt="Memory 6">
+ <img src="photo7.jpg" alt="Memory 7">
+ <img src="photo8.jpg" alt="Memory 8">
+ <img src="photo9.jpg" alt="Memory 9">
+ <img src="photo10.jpg" alt="Memory 10">
+ <img src="photo11.jpg" alt="Memory 11">
+ <img src="photo12.jpg" alt="Memory 12">
+ <img src="photo13.jpg" alt="Memory 13">
+ <img src="photo14.jpg" alt="Memory 14">
+ <img src="photo15.jpg" alt="Memory 15">
+ <img src="photo16.jpg" alt="Memory 16">
+ <img src="photo17.jpg" alt="Memory 17">
+ <img src="photo18.jpg" alt="Memory 18">
+ <img src="photo19.jpg" alt="Memory 19">
+ <img src="photo20.jpg" alt="Memory 20">
+ <img src="photo21.jpg" alt="Memory 21">
+ <img src="photo22.jpg" alt="Memory 22">
+ <img src="photo23.jpg" alt="Memory 23">
+ <img src="photo24.jpg" alt="Memory 24">
+ <img src="photo25.jpg" alt="Memory 25">
+ <img src="photo26.jpg" alt="Memory 26">
+ <img src="photo27.jpg" alt="Memory 27">
+ <img src="photo28.jpg" alt="Memory 28">
+ <img src="photo29.jpg" alt="Memory 29">
+ <img src="photo30.jpg" alt="Memory 30">         
+            <!-- Your Video here -->
+            <video src="video9.mp4"></video>
+        </div>
+
+        <div class="dots" id="dotsContainer"></div>
+
+        <audio id="bgMusic" controls autoplay loop>
+            <source src="music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <button class="btn-message" id="showMessageBtn">💌 My Message</button>
+
+        <div id="secretMessage">
+            <p><strong>To my homies,</strong></p>
+            <br>
+            <p>Hi, ShaTenLlian! Happy Friendsary!♡ </p>
+            <br>
+	    <p> Hindi ko alam ang sasabihin ko hehe :) Pero here I am writing this in the middle of the night. Btw, it's 3 o'clock in the morning.
+		Sa ganitong oras mas gumagana ang productivity and creativity ko, so ayun last week ko pa ito gustong gawin for us to watch kapag nag celebrate
+		tayo ng birthdays natin together (August 8), also our friendship celebration. Sana magustuhan niyo :) </p>
+	    <br>
+	    <p> I just wanted to say sorry. It was really never my intetion to make one of us feel left out. I am truly sorry for being insensitive again for not 
+		feeling what you were feeling. I am making this because I just miss our bond, memories and of course I miss us, being whole, being Shaventellian.
+		I am genuinely happy and grateful na naging kaibigan ko kayong tatlo♥︎. You three have a special space to my heart, hindi na mawawala 'yan kahit anong mangyari.
+		I love you, guys. And sorry for making you doubt that, everytime I make you feel like I am not happy kapag kasama kayo, sorry. You have made every single moment unforgettable. 
+		Lahat 'yan nakatatak sa akin, never mawawala kasi kayo 'yan e. Ang laki ng part nyo sa buhay ko, grabe kayo yung andiyan kahit nung maldita pa ako whahaha. You have witnessed every 
+		versions of me. And I am thankful for that. I am happy that it's you, three, is there for me. </p>
+	    <br> 
+            <p>Thank you for the laughter, the heart-to-hearts, and for always having my back. 
+               I wish for our happiness and succesful. Mag-iingat kayo lagi. Kapag napagod kayo, learn to stop but not to give up but to rest. Alagaan ang sarili :)
+	       At laging piliin kung ano ang makakapag pasaya sainyo, hindi naman 'yan waste of time kung naging masaya ka. Be soft to yourselves 'cause it is your first time living life too.
+	        Happy Friendsary and Happy Birthday to us. I love you, from the bottom of my heart ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // Media Setup
+        const mediaItems = document.querySelectorAll('#mediaBox img, #mediaBox video');
+        const dotsContainer = document.getElementById('dotsContainer');
+        let currentIndex = 0;
+        let slideInterval;
+
+        // Create Dots
+        mediaItems.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlide() {
+            // Remove active class from all
+            mediaItems.forEach(item => item.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active class to current
+            const currentItem = mediaItems[currentIndex];
+            currentItem.classList.add('active');
+            dots[currentIndex].classList.add('active');
+
+            // Handle Video Autoplay
+            if (currentItem.tagName === 'VIDEO') {
+                currentItem.play();
+            } else {
+                // Stop previous videos if we go back to an image
+                mediaItems.forEach(item => {
+                    if(item.tagName === 'VIDEO' && item !== currentItem) {
+                        item.pause();
+                        item.currentTime = 0;
+                    }
+                });
+            }
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % mediaItems.length;
+            updateSlide();
+        }
+
+        // Start slideshow (3 seconds per image/video)
+        slideInterval = setInterval(nextSlide, 3000);
+
+        // Pause slideshow when hovering (optional, good for mobile too)
+        document.getElementById('mediaBox').addEventListener('touchstart', () => {
+            clearInterval(slideInterval);
+        });
+        document.getElementById('mediaBox').addEventListener('touchend', () => {
+            slideInterval = setInterval(nextSlide, 3000);
+        });
+
+        // Message Button Logic
+        const btn = document.getElementById('showMessageBtn');
+        const message = document.getElementById('secretMessage');
+
+        btn.addEventListener('click', () => {
+            // Show the message
+            message.classList.add('show');
+            // Hide the button so they know it's the end
+            btn.classList.add('hidden');
+            // Scroll smoothly to the message
+            message.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Initial setup to ensure first video doesn't play if first item
+        if(mediaItems[0].tagName === 'VIDEO') {
+            mediaItems[0].load(); 
+        }
+    </script>
+</body>
+</html>
